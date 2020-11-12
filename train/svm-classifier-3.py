@@ -55,16 +55,16 @@ def load_image_files(container_path, dimension=(64, 64)):
     # flat_data = np.array(flat_data)
     # target = np.array(target)
 
-    np.savetxt("./data/stringing/flat_data.txt", flat_data)
-    np.savetxt("./data/stringing/target.txt", target)
+    np.savetxt("./data/stringing-cropped/flat_data.txt", flat_data)
+    np.savetxt("./data/stringing-cropped/target.txt", target)
 
     # images-stringing-support = np.array(images-stringing-support)
     # print(target)
 
 
 def train():
-    flat_data = np.loadtxt("./data/stringing/flat_data.txt")
-    target = np.loadtxt("./data/stringing/target.txt")
+    flat_data = np.loadtxt("./data/stringing-cropped/flat_data.txt")
+    target = np.loadtxt("./data/stringing-cropped/target.txt")
     # print(flat_data)
 
     X_train, X_test, y_train, y_test = \
@@ -89,11 +89,11 @@ def train():
     # Model Recall: what percentage of positive tuples are labelled as such?
     print("Recall:", metrics.recall_score(y_test, y_pred))
 
-    dump(clf, './model/stringing/stringing_1.joblib')
+    dump(clf, './model/stringing-cropped/stringing_cropped.joblib')
+
 
 if __name__ == "__main__":
-    #get_image_data()
-    #load_image_files("./images-stringing-support")
+    load_image_files("./stringing_cropped")
 
     train()
 
